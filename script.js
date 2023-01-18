@@ -10,7 +10,8 @@ ancora tutte pronte? */
 const app = Vue.createApp({
     data(){
         return{
-
+            mailList: [],
+            isLoading: false
         }
     },
     computed:{
@@ -19,14 +20,14 @@ const app = Vue.createApp({
     methods:{
 
     },
-
-    // todo DA ELIMINARE
     mounted(){
-        axios.get()
-        .then(() => {})
+        for (let i = 0; i < 10; i++){
+            axios.get('https://flynn.boolean.careers/exercises/api/random/mail')
+            .then(Response => {
+            this.mailList.push(Response.data.response)
+            })
+        }
     }
 });
-
-// todo DA AGGIUNGERE ID ROOT
 
 app.mount('#root');
